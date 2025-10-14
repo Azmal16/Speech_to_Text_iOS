@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		168EE54C2E9E121F00505CB2 /* Speech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 168EE54B2E9E121F00505CB2 /* Speech.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		168EE52E2E9E10BF00505CB2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,11 +31,25 @@
 		168EE5202E9E10BA00505CB2 /* SpeechToText.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpeechToText.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		168EE52D2E9E10BF00505CB2 /* SpeechToTextTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpeechToTextTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		168EE5372E9E10BF00505CB2 /* SpeechToTextUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpeechToTextUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		168EE54B2E9E121F00505CB2 /* Speech.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Speech.framework; path = System/Library/Frameworks/Speech.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		168EE54E2E9E128600505CB2 /* Exceptions for "SpeechToText" folder in "SpeechToText" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 168EE51F2E9E10BA00505CB2 /* SpeechToText */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		168EE5222E9E10BA00505CB2 /* SpeechToText */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				168EE54E2E9E128600505CB2 /* Exceptions for "SpeechToText" folder in "SpeechToText" target */,
+			);
 			path = SpeechToText;
 			sourceTree = "<group>";
 		};
@@ -52,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				168EE54C2E9E121F00505CB2 /* Speech.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +97,7 @@
 				168EE5222E9E10BA00505CB2 /* SpeechToText */,
 				168EE5302E9E10BF00505CB2 /* SpeechToTextTests */,
 				168EE53A2E9E10BF00505CB2 /* SpeechToTextUITests */,
+				168EE54A2E9E121E00505CB2 /* Frameworks */,
 				168EE5212E9E10BA00505CB2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +110,14 @@
 				168EE5372E9E10BF00505CB2 /* SpeechToTextUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		168EE54A2E9E121E00505CB2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				168EE54B2E9E121F00505CB2 /* Speech.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -400,6 +428,10 @@
 				DEVELOPMENT_TEAM = BD7Y2B4ZKU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SpeechToText/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Please Provide Your Mic Access";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "We need access to your speech to convert it into text";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -428,6 +460,10 @@
 				DEVELOPMENT_TEAM = BD7Y2B4ZKU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SpeechToText/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Please Provide Your Mic Access";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "We need access to your speech to convert it into text";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
