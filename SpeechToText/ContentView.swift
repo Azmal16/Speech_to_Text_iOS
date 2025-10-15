@@ -2,9 +2,9 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @StateObject private var viewModel: SurveyViewModel
+    @StateObject private var viewModel: SpeechViewModel
 
-    init(viewModel: SurveyViewModel) {
+    init(viewModel: SpeechViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
 

@@ -1,7 +1,7 @@
 import Foundation
 import SwiftUI
 
-class SurveyViewModel: ObservableObject {
+class SpeechViewModel: ObservableObject {
     @Published var currentQuestion: Question
     @Published var survey: Survey
     @Published var answer: String = ""
@@ -21,19 +21,23 @@ class SurveyViewModel: ObservableObject {
         
         self.speechManager.currentQuestion = self.currentQuestion
         
-        self.speechManager.completion = { answer in
+        self.speechManager.completion = { [weak self] answer in
             DispatchQueue.main.async {
-                self.answer = answer
-                if self.currentQuestion.options.contains(answer) {
-                    self.selectedOption = answer
+                self?.answer = answer
+                if ((self?.currentQuestion.options.contains(answer)) != nil) {
+                    self?.selectedOption = answer
+                    
+                    // Trigger haptic feedback
+                    let generator = UINotificationFeedbackGenerator()
+                    generator.notificationOccurred(.success)
                 }
             }
         }
-        
-        self.speechManager.moveToNextQuestion = {
+
+        self.speechManager.moveToNextQuestion = { [weak self] in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
                 withAnimation(.easeInOut) {
-                    self.moveToNextQuestion()
+                    self?.moveToNextQuestion()
                 }
             }
         }

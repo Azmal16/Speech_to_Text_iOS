@@ -22,7 +22,7 @@ struct SpeechToTextApp: App {
             ])
             
             // Pass the ViewModel with the Survey data to ContentView
-            ContentView(viewModel: SurveyViewModel(survey: survey))
+            ContentView(viewModel: SpeechViewModel(survey: survey))
         }
     }
 }
