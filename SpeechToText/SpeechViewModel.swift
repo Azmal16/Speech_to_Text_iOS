@@ -6,9 +6,13 @@ class SurveyViewModel: ObservableObject {
     @Published var survey: Survey
     @Published var answer: String = ""
     @Published var isRecording = false
-    @Published var selectedOption: String? = nil // Track the option that was matched
+    @Published var selectedOption: String? = nil
     
     private var speechManager: SpeechManager
+    
+    var isSurveyCompleted: Bool {
+        survey.currentIndex >= survey.questions.count
+    }
     
     init(survey: Survey) {
         self.survey = survey
@@ -17,20 +21,17 @@ class SurveyViewModel: ObservableObject {
         
         self.speechManager.currentQuestion = self.currentQuestion
         
-        // Completion called when answer is detected
-        self.speechManager.completion = { [weak self] answer in
+        self.speechManager.completion = { answer in
             DispatchQueue.main.async {
-                self?.answer = answer
-                // Mark the selected option for tick
-                if ((self?.currentQuestion.options.contains(answer)) != nil) {
-                    self?.selectedOption = answer
+                self.answer = answer
+                if self.currentQuestion.options.contains(answer) {
+                    self.selectedOption = answer
                 }
             }
         }
         
-        // Automatically move to the next question after a short delay to show the tick
         self.speechManager.moveToNextQuestion = {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { // 0.8s to show tick
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
                 withAnimation(.easeInOut) {
                     self.moveToNextQuestion()
                 }
@@ -48,11 +49,27 @@ class SurveyViewModel: ObservableObject {
     
     func moveToNextQuestion() {
         survey.moveToNextQuestion()
+        if !isSurveyCompleted {
+            currentQuestion = survey.getCurrentQuestion()
+            speechManager.currentQuestion = currentQuestion
+            answer = ""
+            selectedOption = nil
+            stopRecording()
+            isRecording = false
+        } else {
+            // Stop recording when survey ends
+            stopRecording()
+            isRecording = false
+        }
+    }
+    
+    func restartSurvey() {
+        survey.currentIndex = 0
         currentQuestion = survey.getCurrentQuestion()
-        speechManager.currentQuestion = currentQuestion
         answer = ""
         selectedOption = nil
         stopRecording()
         isRecording = false
+        speechManager.currentQuestion = currentQuestion
     }
 }

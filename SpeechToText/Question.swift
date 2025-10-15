@@ -18,19 +18,26 @@ struct Question {
 // Survey model holding multiple questions
 class Survey {
     var questions: [Question]
-    var currentIndex = 0
-    
+    var currentIndex: Int = 0
+
     init(questions: [Question]) {
         self.questions = questions
     }
-    
+
     func getCurrentQuestion() -> Question {
-        return questions[currentIndex]
-    }
-    
-    func moveToNextQuestion() {
-        if currentIndex < questions.count - 1 {
-            currentIndex += 1
+        if currentIndex < questions.count {
+            return questions[currentIndex]
+        } else {
+            // Return a placeholder; shouldn't be accessed if survey is completed
+            return Question(id: -1, text: "", options: [])
         }
+    }
+
+    func moveToNextQuestion() {
+        currentIndex += 1
+    }
+
+    func reset() {
+        currentIndex = 0
     }
 }
